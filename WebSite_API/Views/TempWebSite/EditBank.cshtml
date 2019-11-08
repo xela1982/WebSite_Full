@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@model WebSite_Repositories.Entities.Bank
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditBank</title>
+</head>
+<body>
+    <div style="float:right">
+        @using (Html.BeginForm("UpdateBank", "TempWebSite", FormMethod.Post))
+        {
+            @Html.TextBoxFor(m => m.Name)
+            @Html.HiddenFor(m => m.Id)
+            <input type="submit" value="שמירה" />
+        }
+    </div>
+</body>
+</html>

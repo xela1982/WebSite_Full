@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetBanks</title>
+</head>
+<body>
+    <div style="float:right">
+        @foreach (var item in Model)
+        {
+            <table>
+                <tr>
+                    <td>
+                        @item.Name (@item.Id)
+                    </td>
+                    <td>
+                        @Html.ActionLink("מחיקה", "DeleteBank", "TempWebSite", new { Id = @item.Id })
+                    </td>
+                    <td>
+                        @Html.ActionLink("עריכה", "editbank", "TempWebSite", new { Id = @item.Id })
+                    </td>
+                </tr>
+            </table>
+
+        }
+
+        @using (Html.BeginForm("PostBanks", "TempWebSite", FormMethod.Post))
+        {
+            <input type="text" name="name" />
+            <input type="submit" value="הוספת בנק" />
+        }
+        </div>
+</body>
+</html>
