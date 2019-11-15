@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = null;
+}
+@model WebSite_Web.Models.ErrorViewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    @Model.ExceptionResponse.Source<br />
+    @Model.ExceptionResponse.Message<br />
+    @Model.ExceptionResponse.StackTrace
+</body>
+</html>

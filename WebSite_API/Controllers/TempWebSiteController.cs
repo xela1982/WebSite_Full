@@ -24,12 +24,13 @@ namespace WebSite.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Bank>>> GetBanks()
         {
-            (bool success, List<Bank> output) = await _webSiteServices.GetBanks();
+           
+            (bool success, List<Bank> output, Exception ex) = await _webSiteServices.GetBanks();
             if (success)
                 return View(output);
             else
             {
-                var NotFoundViewModel = new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+                var NotFoundViewModel = new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier, ExceptionResponse = ex };
                 return View("Error", NotFoundViewModel);
             }
         }
@@ -40,12 +41,13 @@ namespace WebSite.Controllers
             if (name == string.Empty || name==null)
                 return RedirectToAction("GetBanks");
 
-            (bool success, int output) = await _webSiteServices.InsertBank(name);
+            (bool success, int output, Exception ex) = await _webSiteServices.InsertBank(name);
             if (success)
                 return RedirectToAction("GetBanks");
             else
             {
-                var NotFoundViewModel = new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+
+                var NotFoundViewModel = new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier , ExceptionResponse = ex};
                 return View("Error", NotFoundViewModel);
             }
         }

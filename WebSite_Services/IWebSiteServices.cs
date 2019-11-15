@@ -10,9 +10,9 @@ namespace WebSite.Services
     {
         Task<(bool,List<Report>)> GetReportByParam(int companyId, DateTime startDate, DateTime endDate);
         Task<(bool,List<Company>)> GetCompanies();
-        Task<(bool, List<Bank>)> GetBanks();
+        Task<(bool, List<Bank>, Exception)> GetBanks();
         Task<(bool success, Bank output)> GetBank(int id);
-        Task<(bool,int)> InsertBank(string name);
+        Task<(bool,int, Exception)> InsertBank(string name);
         Task<bool> DeleteBank(int id);
         Task<bool> UpdateBank(int id, string name);
     }

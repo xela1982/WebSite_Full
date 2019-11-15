@@ -5,16 +5,17 @@ using System.Threading.Tasks;
 
 using WebSite_Repositories.Entities;
 using WebSite.Services;
+using System;
 
 namespace WebSite.Controllers
 {
     [Route("/api/[action]")]
     [ApiController]
-    public class WebSiteController : ControllerBase
+    public class ApiController : ControllerBase
     {
 
         private readonly IWebSiteServices _webSiteServices;
-        public WebSiteController(IWebSiteServices webSiteServices)
+        public ApiController(IWebSiteServices webSiteServices)
         {
             _webSiteServices = webSiteServices;
         }
@@ -44,7 +45,7 @@ namespace WebSite.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Bank>>> GetBanks()
         {
-            (bool success, List<Bank> output) = await _webSiteServices.GetBanks();
+            (bool success, List<Bank> output, Exception ex) = await _webSiteServices.GetBanks();
             if (success)
                 return output;
             else
